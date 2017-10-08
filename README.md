@@ -32,5 +32,9 @@ Service Worker的使用套路是先注册一个Worker，然后后台就会启动
       }); 
   });
 ```
+Http/Manifest/Service Worker三种cache的关系
+-
+要缓存可以使用三种手段，使用Http Cache设置缓存时间，也可以用Manifest的Application Cache，还可以用Service Worker缓存，如果三者都用上了会怎么样呢？
 
+会以Service Worker为优先，因为Service Worker把请求拦截了，它最先做处理，如果它缓存库里有的话直接返回，没有的话正常请求，就相当于没有Service Worker了，这个时候就到了Manifest层，Manifest缓存里如果有的话就取这个缓存，如果没有的话就相当于没有Manifest了，于是就会从Http缓存里取了，如果Http缓存里也没有就会发请求去获取，服务端根据Http的etag或者Modified Time可能会返回304 Not Modified，否则正常返回200和数据内容。这就是整一个获取的过程。
 
