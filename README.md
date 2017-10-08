@@ -32,6 +32,10 @@ Service Worker的使用套路是先注册一个Worker，然后后台就会启动
       }); 
   });
 ```
+demo介绍
+-
+进入项目目录，`npm install`之后，使用`npm start`在浏览器中预览，可以看到请求中图片的`from ServiceWorker`。为了避免兼容性问题，直接在chrome中打开。注册在`app/index.js`中，service-worker配置在`sw.js`中。
+
 Http/Manifest/Service Worker三种cache的关系
 -
 要缓存可以使用三种手段，使用Http Cache设置缓存时间，也可以用Manifest的Application Cache，还可以用Service Worker缓存，如果三者都用上了会怎么样呢？
